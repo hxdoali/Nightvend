@@ -99,11 +99,6 @@ body::before {
   50%, 100% { left: 100%; }
 }
 
-/* Neon glow effect */
-.neon-glow {
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 40px rgba(0, 240, 255, 0.2), 0 0 80px rgba(0, 240, 255, 0.1);
-}
-
 /* Pulsing dot */
 .pulse-dot {
   width: 8px;
