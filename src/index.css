@@ -26,6 +26,21 @@ body::before {
   background-size: 256px 256px;
 }
 
+/* Club vibe color wash */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(0, 240, 255, 0.16), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(255, 45, 149, 0.14), transparent 45%),
+    radial-gradient(circle at 55% 40%, rgba(123, 45, 255, 0.12), transparent 42%);
+  animation: clubPulse 16s ease-in-out infinite alternate;
+}
+
 /* Scroll reveal animation classes */
 .reveal {
   opacity: 0;
@@ -55,6 +70,7 @@ body::before {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.5s ease;
 }
 
@@ -75,6 +91,11 @@ body::before {
 @keyframes gradientShift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+@keyframes clubPulse {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(2%, -2%, 0) scale(1.08); }
 }
 
 /* Shimmer button effect */
