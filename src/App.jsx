@@ -166,7 +166,7 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-5 scan-overlay">
+    <section className="relative min-h-screen flex items-start justify-center md:items-center overflow-hidden px-5 pt-28 pb-12 md:pt-0 md:pb-0 scan-overlay">
       {/* Animated orbs - bigger, more dramatic */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="orb orb-1" />
@@ -215,10 +215,10 @@ function Hero() {
         @keyframes drift4 { to { transform: translate(50px, -40px) scale(1.1); } }
       `}</style>
 
-      <div className="relative z-10 text-center max-w-4xl">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-cyan/30 bg-accent-cyan/5 mb-8">
+      <div className="relative z-10 w-full text-center max-w-4xl">
+        <div className="inline-flex max-w-full items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-accent-cyan/30 bg-accent-cyan/5 mb-8">
           <span className="pulse-dot" />
-          <span className="text-accent-cyan text-sm font-medium tracking-wide">LIVE IN NJ & NY NIGHTLIFE HOTSPOTS</span>
+          <span className="text-accent-cyan text-[11px] sm:text-sm font-medium tracking-wide leading-tight">LIVE IN NJ & NY NIGHTLIFE HOTSPOTS</span>
         </div>
 
         <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-wide leading-[0.9] mb-6">
