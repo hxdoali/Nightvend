@@ -560,8 +560,8 @@ function Footer() {
               <a href="mailto:contact@getvendetta.com" className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
                 <Mail size={16} /> contact@getvendetta.com
               </a>
-              <a href="tel:+12015550199" className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
-                <Phone size={16} /> (201) 555-0199
+              <a href="tel:+12018005506" className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
+                <Phone size={16} /> (201) 800-5506
               </a>
               <div className="flex items-center gap-2">
                 <MapPin size={16} /> New Jersey & New York
