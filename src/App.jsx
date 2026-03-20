@@ -557,8 +557,8 @@ function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider text-text-muted">Contact</h4>
             <div className="space-y-3 text-sm text-text-secondary">
-              <a href="mailto:info@vendettavend.com" className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
-                <Mail size={16} /> info@vendettavend.com
+              <a href="mailto:contact@getvendetta.com" className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
+                <Mail size={16} /> contact@getvendetta.com
               </a>
               <a href="tel:+12015550199" className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
                 <Phone size={16} /> (201) 555-0199
