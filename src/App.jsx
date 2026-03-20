@@ -55,6 +55,13 @@ const NAV_LINKS = [
   { label: 'Contact', href: '#contact' },
 ]
 
+const CONTACT_EMAIL = 'contact@getvendetta.com'
+const NETWORK_STATS = {
+  machines: '85+',
+  venues: '60+',
+  markets: '16',
+}
+
 /* ───────────────────────── Age Gate ───────────────────────── */
 
 function AgeGate({ onVerified }) {
@@ -211,7 +218,7 @@ function Hero() {
       <div className="relative z-10 text-center max-w-4xl">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-cyan/30 bg-accent-cyan/5 mb-8">
           <span className="pulse-dot" />
-          <span className="text-accent-cyan text-sm font-medium tracking-wide">NOW OPERATING ACROSS NJ & NY</span>
+          <span className="text-accent-cyan text-sm font-medium tracking-wide">LIVE IN NJ & NY NIGHTLIFE HOTSPOTS</span>
         </div>
 
         <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-wide leading-[0.9] mb-6">
@@ -220,8 +227,8 @@ function Hero() {
         </h1>
 
         <p className="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-          One of the largest vape vending machine distributors in New Jersey and New York.
-          Premium smart vending for bars, clubs, and lounges. We keep the night going.
+          Dominating late-night essentials across New Jersey and New York with premium smart vending for bars,
+          clubs, and lounges. If your venue is not on Vendetta, that revenue is going to the spot down the block.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -243,18 +250,21 @@ function Hero() {
         {/* Stats bar */}
         <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto">
           <div>
-            <div className="font-display text-3xl md:text-4xl stat-number">200+</div>
+            <div className="font-display text-3xl md:text-4xl stat-number">{NETWORK_STATS.machines}</div>
             <div className="text-text-muted text-xs uppercase tracking-wider mt-1">Machines Live</div>
           </div>
           <div>
-            <div className="font-display text-3xl md:text-4xl stat-number">2</div>
-            <div className="text-text-muted text-xs uppercase tracking-wider mt-1">States</div>
+            <div className="font-display text-3xl md:text-4xl stat-number">{NETWORK_STATS.venues}</div>
+            <div className="text-text-muted text-xs uppercase tracking-wider mt-1">Partner Venues</div>
           </div>
           <div>
-            <div className="font-display text-3xl md:text-4xl stat-number">24/7</div>
-            <div className="text-text-muted text-xs uppercase tracking-wider mt-1">Always On</div>
+            <div className="font-display text-3xl md:text-4xl stat-number">{NETWORK_STATS.markets}+</div>
+            <div className="text-text-muted text-xs uppercase tracking-wider mt-1">Nightlife Markets</div>
           </div>
         </div>
+        <p className="text-text-muted text-sm mt-5">
+          Peak-hour demand is already being captured nightly by venues inside our network.
+        </p>
       </div>
     </section>
   )
@@ -341,6 +351,11 @@ const VALUE_PROPS = [
 
 const VENUE_TYPES = ['Bar', 'Nightclub', 'Restaurant', 'Lounge', 'Hotel', 'Other']
 const TRAFFIC_OPTIONS = ['Under 100', '100-300', '300-500', '500+']
+const VENUE_METRICS = [
+  { label: 'Typical Monthly Commission', value: '$900-$2,200' },
+  { label: 'Machine Uptime', value: '99%+' },
+  { label: 'Support + Restock Response', value: '<24 Hours' },
+]
 
 function ForVenues() {
   const [form, setForm] = useState({
@@ -353,6 +368,21 @@ function ForVenues() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const subject = encodeURIComponent(`New Vendetta Partner Inquiry - ${form.venueName}`)
+    const body = encodeURIComponent(
+      [
+        `Venue Name: ${form.venueName}`,
+        `Contact Name: ${form.contactName}`,
+        `Email: ${form.email}`,
+        `Phone: ${form.phone}`,
+        `Venue Type: ${form.venueType}`,
+        `Estimated Weekend Nightly Traffic: ${form.traffic}`,
+        '',
+        'Message / Questions:',
+        form.message || 'N/A',
+      ].join('\n')
+    )
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
     setSubmitted(true)
   }
 
@@ -361,7 +391,16 @@ function ForVenues() {
 
   return (
     <section id="for-venues" className="relative z-10 py-28 px-5">
-      <SectionHeading sub="Join the largest vape vending network in the tri-state area.">Partner With Us</SectionHeading>
+      <SectionHeading sub={`Already ${NETWORK_STATS.machines} live machines across ${NETWORK_STATS.venues} partner venues. If your spot is not on the network yet, your competitors are collecting those late-night sales.`}>Partner With Us</SectionHeading>
+
+      <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-5 mb-10">
+        {VENUE_METRICS.map((m) => (
+          <div key={m.label} className="glow-card bg-bg-secondary border border-white/5 rounded-xl p-6 text-center">
+            <p className="font-display text-3xl stat-number">{m.value}</p>
+            <p className="text-text-muted text-xs uppercase tracking-wider mt-2">{m.label}</p>
+          </div>
+        ))}
+      </div>
 
       <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6 mb-20">
         {VALUE_PROPS.map((v) => {
@@ -486,6 +525,7 @@ function Coverage() {
 const FAQS = [
   { q: 'Is this legal?', a: 'Absolutely. All machines are placed in 21+ venues in full compliance with New Jersey and New York state law and FDA regulations. Every age-restricted purchase requires ID verification.' },
   { q: 'What does it cost the venue?', a: 'Nothing. We provide, install, stock, and maintain the machine at zero cost. Venue partners earn a commission on every sale.' },
+  { q: 'How much can venues actually make?', a: 'Typical partner venues generate about $900-$2,200 per month in commission, depending on foot traffic and hours. High-volume nightlife locations often land on the upper end of that range.' },
   { q: 'What products do you sell?', a: 'FDA-authorized vapes (Vuse, NJOY, Logic), nicotine pouches (ZYN, On!), phone chargers, condoms, breath mints, pain relievers, energy shots, and other nightlife essentials.' },
   { q: 'How does age verification work?', a: 'Our machines include built-in ID scanners that read driver\'s license barcodes. Age-restricted products cannot be dispensed without successful verification.' },
   { q: 'How do payments work?', a: 'All purchases are cashless — credit/debit cards, Apple Pay, Google Pay, and NFC tap-to-pay.' },
@@ -507,13 +547,17 @@ function FAQ() {
           return (
             <div key={i} ref={ref} className="reveal glow-card border border-white/5 rounded-xl overflow-hidden">
               <button
+                type="button"
                 onClick={() => setOpenIndex(open ? null : i)}
+                aria-expanded={open}
+                aria-controls={`faq-panel-${i}`}
                 className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-white/[0.02] transition-colors"
               >
                 <span className="font-semibold pr-4">{f.q}</span>
                 {open ? <ChevronUp size={18} className="flex-shrink-0 text-accent-cyan" /> : <ChevronDown size={18} className="flex-shrink-0 text-text-muted" />}
               </button>
               <div
+                id={`faq-panel-${i}`}
                 className="transition-all duration-300 overflow-hidden"
                 style={{ maxHeight: open ? '300px' : '0' }}
               >
@@ -539,7 +583,7 @@ function Footer() {
             <p className="text-text-secondary text-sm leading-relaxed mb-4">One of the largest vape vending machine distributors across New Jersey and New York.</p>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-cyan/20 bg-accent-cyan/5">
               <span className="pulse-dot" style={{ width: 6, height: 6 }} />
-              <span className="text-accent-cyan text-xs font-medium">200+ Machines Live</span>
+              <span className="text-accent-cyan text-xs font-medium">{NETWORK_STATS.machines} Machines Live</span>
             </div>
           </div>
 
@@ -557,8 +601,8 @@ function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider text-text-muted">Contact</h4>
             <div className="space-y-3 text-sm text-text-secondary">
-              <a href="mailto:contact@getvendetta.com" className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
-                <Mail size={16} /> contact@getvendetta.com
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
+                <Mail size={16} /> {CONTACT_EMAIL}
               </a>
               <a href="tel:+12018005506" className="flex items-center gap-2 hover:text-accent-cyan transition-colors duration-300">
                 <Phone size={16} /> (201) 800-5506
